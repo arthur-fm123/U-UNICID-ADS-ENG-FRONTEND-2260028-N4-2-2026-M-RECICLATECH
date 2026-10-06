@@ -53,6 +53,7 @@ O projeto também conta com voluntários (técnicos, instrutores, intérpretes d
 - CSS
 - JavaScript
 - Hospedagem: Railway
+- Trello
 
 ## Equipe
 
