@@ -225,6 +225,17 @@
     color: var(--accent);
   }
 
+  /* =========================================================
+     Controle de tamanho da fonte (A-, A, A+)
+     Muda o font-size do <html>; tudo que está em rem acompanha.
+     ========================================================= */
+
+  /* Etapa 3: tamanho da fonte conforme o botão marcado */
+  html:has(#fonte-menor:checked) { font-size: 87.5%; }
+  html:has(#fonte-normal:checked) { font-size: 100%; }
+  html:has(#fonte-maior:checked) { font-size: 125%; }
+
+  /* Etapa 5: fixo no canto inferior direito da tela */
   .controle-fonte {
     position: fixed;
     bottom: 1rem;
@@ -232,6 +243,38 @@
     z-index: 40;
     display: flex;
     gap: 0.5rem;
+  }
+
+  /* Etapa 4: esconde as bolinhas dos botões de rádio */
+  .controle-fonte input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Rótulos com aparência de botão */
+  .controle-fonte label {
+    cursor: pointer;
+    min-width: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-main);
+    background: var(--bg-nav);
+    border: 2px solid var(--accent);
+    border-radius: 0.5rem;
+  }
+
+  /* Destaque do tamanho ativo */
+  .controle-fonte input:checked + label {
+    background: var(--accent);
+    color: var(--bg-page);
+  }
+
+  /* Contorno ao navegar pelo teclado (Tab) */
+  .controle-fonte input:focus-visible + label {
+    outline: 3px solid var(--text-main);
+    outline-offset: 2px;
   }
 
   /* =========================================================
@@ -274,14 +317,3 @@
       max-height: 28rem;
     }
   }
-  html:has(#fonte-menor:checked) { font-size: 87.5%; }
-html:has(#fonte-normal:checked) { font-size: 100%; }
-html:has(#fonte-maior:checked) { font-size: 125%; }
-
-.controle-fonte input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.controle-fonte input:checked + label { /* sua cor de destaque aqui */ }
