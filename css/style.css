@@ -1,5 +1,5 @@
 /* =========================================================
-   Solar Byte — estilos base
+   ReciclaTech — estilos base
    Referência visual: navbar escura, logo em destaque à
    esquerda, links à direita, menu hamburguer no mobile.
    ========================================================= */
@@ -10,6 +10,7 @@
     --text-main: rgb(255, 255, 255); /*cor do texto*/
     --text-muted: #ffffff; /*cor do texto*/
     --accent: #c2cab7; /*Cor de destaque (links)*/
+    --bg-banner2: #2a4010; /*Cor de fundo do hero-banner2 (verde escuro)*/
   
     --font-base: "Segoe UI", Arial, sans-serif; /*Fonte do site*/
     --nav-height: 4.25rem; /*Altura da barra de navegação*/
@@ -31,6 +32,20 @@
     text-decoration: none;
   }
   
+
+  /* ---------- Rolagem suave até as seções ---------- */
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* O header fica fixo no topo para o menu estar sempre visível */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+
   /* ---------- Navbar ---------- */
   
   .barraNav {
@@ -173,11 +188,57 @@
     margin: 0 0 1.5rem;
   }
   
+
+  /* =========================================================
+     Páginas (seções) — cada uma ocupa a tela inteira
+     scroll-margin-top evita que a navbar cubra o título
+     ========================================================= */
+
+  .hero-banner,
+  .pagina {
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .pagina {
+    min-height: calc(100vh - var(--nav-height));
+    min-height: calc(100dvh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+  }
+
+  /* hero-banner2: segunda cor de fundo, usada nas páginas alternadas
+     (pag3, pag5, pag7 e pag9). As demais usam a cor padrão do body. */
+  .hero-banner2 {
+    background: var(--bg-banner2);
+  }
+
+  .pagina-conteudo {
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .pagina h2 {
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    margin: 0 0 1rem;
+    color: var(--accent);
+  }
+
+  .controle-fonte {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 40;
+    display: flex;
+    gap: 0.5rem;
+  }
+
   /* =========================================================
      Responsivo — menu mobile
      ========================================================= */
   
-  @media (max-width: 10000px) {
+  @media (max-width: 1365px) {
     .menu-toggle {
       display: inline-block;
       order: 2;
@@ -213,3 +274,14 @@
       max-height: 28rem;
     }
   }
+  html:has(#fonte-menor:checked) { font-size: 87.5%; }
+html:has(#fonte-normal:checked) { font-size: 100%; }
+html:has(#fonte-maior:checked) { font-size: 125%; }
+
+.controle-fonte input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.controle-fonte input:checked + label { /* sua cor de destaque aqui */ }
