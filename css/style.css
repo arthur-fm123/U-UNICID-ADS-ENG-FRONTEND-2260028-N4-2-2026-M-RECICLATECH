@@ -1,0 +1,523 @@
+/* =========================================================
+   ReciclaTech — estilos base
+   Referência visual: navbar escura, logo em destaque à
+   esquerda, links à direita, menu hamburguer no mobile.
+   ========================================================= */
+
+   :root {
+    --bg-page: #12161d; /*Cor de fundo geral*/
+    --bg-nav: #508320; /*Cor da barra de navegação*/
+    --text-main: rgb(255, 255, 255); /*cor do texto*/
+    --text-muted: #ffffff; /*cor do texto*/
+    --accent: #c2cab7; /*Cor de destaque (links)*/
+    --bg-banner2: #2a4010; /*Cor de fundo do hero-banner2 (verde escuro)*/
+  
+    --font-base: "Segoe UI", Arial, sans-serif; /*Fonte do site*/
+    --nav-height: 4.25rem; /*Altura da barra de navegação*/
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    background: var(--bg-page);
+    color: var(--text-main);
+    font-family: var(--font-base);
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+
+  /* ---------- Rolagem suave até as seções ---------- */
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* O header fica fixo no topo para o menu estar sempre visível */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    container-type: inline-size; /* permite medir a largura do header em rem */
+  }
+
+  /* ---------- Navbar ---------- */
+  
+  .barraNav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--bg-nav);
+    border-bottom: 1px solid #232a35;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+  }
+  
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--text-main);
+  }
+  
+  /* ---------- Links ---------- */
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    padding: 0.35rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    color: var(--text-main);
+    border-bottom-color: var(--accent);
+  }
+  
+  /* ---------- Checkbox + hamburguer (mobile) ---------- */
+  
+  #menu-check {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .menu-toggle {
+    display: none;
+    position: relative;
+    width: 26px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .menu-toggle span,
+  .menu-toggle span::before,
+  .menu-toggle span::after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--text-main);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+  }
+  
+  .menu-toggle span {
+    top: 9px;
+  }
+  
+  .menu-toggle span::before {
+    content: "";
+    top: -8px;
+  }
+  
+  .menu-toggle span::after {
+    content: "";
+    top: 8px;
+  }
+  
+  /* transforma em "X" quando o menu está aberto */
+  #menu-check:checked ~ .menu-toggle span {
+    background: transparent;
+  }
+  
+  #menu-check:checked ~ .menu-toggle span::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+  
+  #menu-check:checked ~ .menu-toggle span::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+  
+  /* =========================================================
+     Hero banner — fora de qualquer media query, ocupa a tela
+     inteira (menos a altura do header)
+     ========================================================= */
+  
+  .hero-banner {
+    position: relative;
+    min-height: calc(100vh - var(--nav-height));
+    min-height: calc(100dvh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.25rem;
+    background-image:
+      linear-gradient(rgba(10,12,18,0.55), rgba(10,12,18,0.75)),
+      url("../img/img-lixo.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .hero-banner-content {
+    max-width: 640px;
+  }
+  
+  .hero-banner h1 {
+    font-size: clamp(1.5rem, 6vw, 2.6rem);
+    margin: 0 0 1rem;
+    line-height: 1.15;
+  }
+  
+  .hero-banner p {
+    color: #d5d7de;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+  }
+  
+
+  /* =========================================================
+     Páginas (seções) — cada uma ocupa a tela inteira
+     scroll-margin-top evita que a navbar cubra o título
+     ========================================================= */
+
+  .hero-banner,
+  .pagina {
+    scroll-margin-top: var(--nav-height);
+  }
+
+  .pagina {
+    min-height: calc(100vh - var(--nav-height));
+    min-height: calc(100dvh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+  }
+
+  /* hero-banner2: segunda cor de fundo, usada nas páginas alternadas
+     (pag3, pag5, pag7 e pag9). As demais usam a cor padrão do body. */
+  .hero-banner2 {
+    background: var(--bg-banner2);
+  }
+
+  .pagina-conteudo {
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .pagina h2 {
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    margin: 0 0 1rem;
+    color: var(--accent);
+  }
+
+  /* =========================================================
+     Controle de tamanho da fonte (A-, A, A+)
+     O JavaScript muda o font-size do <html>; tudo que está em
+     rem acompanha.
+     ========================================================= */
+
+  /* Fixo no canto inferior direito da tela */
+  .controle-fonte {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 40;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  /* Botões */
+  .controle-fonte button {
+    font: inherit;
+    cursor: pointer;
+    min-width: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-main);
+    background: var(--bg-nav);
+    border: 2px solid var(--accent);
+    border-radius: 0.5rem;
+  }
+
+  /* Texto dos botões, escrito pelo CSS (o HTML fica limpo):
+     A (padrão), A- (diminuir) e A+ (aumentar) */
+  .controle-fonte button::before {
+    content: "A";
+  }
+
+  .controle-fonte button[data-acao="diminuir"]::before {
+    content: "A-";
+  }
+
+  .controle-fonte button[data-acao="aumentar"]::before {
+    content: "A+";
+  }
+
+  /* Botão desativado quando chega ao tamanho mínimo ou máximo */
+  .controle-fonte button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* =========================================================
+     Responsivo — menu mobile
+     ========================================================= */
+  
+  @container (max-width: 86rem) {
+    .menu-toggle {
+      display: inline-block;
+      order: 2;
+    }
+  
+    .nav-links {
+      position: absolute;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      background: var(--bg-nav);
+      border-bottom: 1px solid #232a35;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+  
+    .nav-links li {
+      width: 100%;
+    }
+  
+    .nav-links a {
+      display: block;
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid #232a35;
+    }
+  
+    #menu-check:checked ~ .nav-links {
+      max-height: 40rem;
+    }
+  }
+
+/* =========================================================
+   Menu de acessibilidade — botão com o símbolo universal que
+   abre um painel com os controles (hoje: tamanho da fonte)
+   ========================================================= */
+
+.a11y {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 50;
+}
+
+/* Botão circular com o símbolo de acessibilidade.
+   Fundo claro porque o PNG tem contornos pretos e fundo transparente. */
+.a11y-toggle {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0;
+  background: #fff;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.a11y-toggle:hover { background: #e6efdc; }
+.a11y-toggle:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+.a11y-icon {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+/* Menu aberto: o fundo do botão muda para sinalizar o estado */
+.a11y.is-open .a11y-toggle { background: var(--accent); }
+
+/* Painel (abre para cima, alinhado à direita) */
+.a11y-panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.75rem);
+  width: min(20rem, calc(100vw - 2rem));
+  max-height: min(75vh, 32rem);
+  overflow-y: auto;
+  padding: 1rem;
+  background: #1a2e08;
+  color: #fff;
+  border: 2px solid var(--accent);
+  border-radius: 1rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  visibility: hidden; /* fora do foco do Tab quando fechado */
+  transform: translateY(0.75rem) scale(0.98);
+  transform-origin: bottom right;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+.a11y.is-open .a11y-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.a11y-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.a11y-title:not(:first-child) {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Os botões A-, A, A+ deixam de ser flutuantes e passam a morar no painel */
+.a11y .controle-fonte {
+  position: static;
+}
+.a11y .controle-fonte button {
+  flex: 1;
+  min-height: 2.75rem;
+}
+.a11y .controle-fonte button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Celular: painel vira gaveta inferior; o botão fica acima dela */
+@media (max-width: 600px) {
+  .a11y-toggle {
+    position: relative;
+    z-index: 2;
+  }
+  .a11y-panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-height: 80vh;
+    /* espaço para o botão não cobrir o conteúdo da gaveta */
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+    border-width: 2px 0 0;
+    border-radius: 1.25rem 1.25rem 0 0;
+    transform: translateY(100%);
+  }
+  .a11y.is-open .a11y-panel { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a11y *, .a11y *::before, .a11y *::after { transition: none !important; }
+}
+
+/* =========================================================
+   Leitura em voz alta — controles dentro do painel e
+   destaque do trecho atual. Contraste acima de 4,5:1
+   (branco em verde escuro)
+   ========================================================= */
+
+.painel-leitura.sem-suporte .leitura-botoes,
+.painel-leitura.sem-suporte .leitura-velocidade {
+  display: none;
+}
+
+.leitura-status {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #ffffff;
+}
+
+.leitura-status:empty {
+  display: none;
+}
+
+.leitura-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.65rem;
+}
+
+.painel-leitura button {
+  flex: 1 1 auto;
+  cursor: pointer;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #2a4010;
+  border: 2px solid #c2cab7;
+  border-radius: 0.4rem;
+}
+
+.painel-leitura button:hover:not(:disabled) {
+  background: #3a5816;
+}
+
+.painel-leitura button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.painel-leitura button:focus-visible,
+.painel-leitura input[type="range"]:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Só aparece se a pessoa rolar a página na mão durante a leitura */
+#btn-ir-trecho[hidden] {
+  display: none;
+}
+
+.leitura-velocidade label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.leitura-velocidade input[type="range"] {
+  width: 100%;
+  accent-color: #c2cab7;
+}
+
+/* Trecho que está sendo lido no momento.
+   "main .leitura-atual" tem especificidade maior que .pagina h2 e .hero-banner p. */
+main .leitura-atual {
+  outline: 3px solid #1a2e08;
+  outline-offset: 4px;
+  border-radius: 0.25rem;
+  background: #fff3b0;
+  color: #1a1a1a;
+  box-shadow: 0 0 0 6px #fff3b0;
+}
