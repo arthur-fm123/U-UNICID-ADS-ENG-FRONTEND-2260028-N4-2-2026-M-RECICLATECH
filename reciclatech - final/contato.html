@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contato | ReciclaTech</title>
+    <meta name="description" content="Doe equipamentos, agende uma retirada ou seja voluntário.">
+    <!-- Fonte Atkinson Hyperlegible, criada para facilitar a leitura de quem tem baixa visão -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Link "Pular para o conteúdo principal": só aparece ao navegar com a tecla Tab -->
+    <a class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 bg-background p-3 font-bold text-primary" href="#conteudo">Pular para o conteúdo principal</a>
+
+    <!-- Barra de acessibilidade: botão "Alto contraste" (script.js) -->
+    <div class="site-a11y bg-primary text-primary-foreground text-sm">
+        <div class="container-site flex flex-wrap justify-end gap-1">
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 font-bold hover:underline" data-a11y="hc" aria-pressed="false">
+                Alto contraste
+            </button>
+        </div>
+    </div>
+
+    <!-- Cabeçalho fixo no topo: logo, botão "Menu" (só no celular) e menu principal -->
+    <header class="border-b bg-background sticky top-0 z-40">
+        <div class="container-site flex items-center justify-between py-3">
+            <a href="index.html" aria-label="ReciclaTech – página inicial">
+                <!-- Logo oficial: a primeira imagem aparece no modo normal e a segunda (versão para fundo escuro) só no
+                     alto contraste. A imagem escondida tem display: none, então o leitor de tela anuncia só uma.
+                     O nome do link vem do aria-label. -->
+                <img class="logo-site logo-normal" alt="ReciclaTech" height="192" src="files/logo-reciclatech.webp" width="511">
+                <img class="logo-site logo-contraste" alt="ReciclaTech" height="192" loading="lazy" src="files/logo-reciclatech-contraste.webp" width="511">
+            </a>
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 py-2 lg:hidden min-h-12 px-4 font-bold text-primary" aria-controls="menu" aria-expanded="false">
+                <svg class="lucide lucide-menu" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4 5h16"></path>
+                    <path d="M4 12h16"></path>
+                    <path d="M4 19h16"></path>
+                </svg>
+                Menu
+            </button>
+            <!-- Menu principal (no celular, abre e fecha pelo botão "Menu"; o link da página atual tem aria-current="page") -->
+            <nav id="menu" class="site-nav hidden absolute left-0 right-0 top-full bg-background border-b lg:static lg:block lg:border-0" aria-label="Menu principal">
+                <ul class="container-site flex flex-col lg:flex-row lg:p-0 gap-1">
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="index.html">
+                            Início
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="sobre.html">
+                            Sobre
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="projetos.html">
+                            Projetos
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="impacto.html">
+                            Impacto
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="acessibilidade.html">
+                            Acessibilidade
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="galeria.html">
+                            Galeria
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="midia.html">
+                            Mídia
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="noticias.html">
+                            Notícias
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold active" href="contato.html" data-status="active" aria-current="page">
+                            Contato
+                        </a>
+                    </li>
+                    <!-- Painel "Ajustes de leitura": tamanho da fonte (tamanho.js) e leitura em voz alta (leitura-voz.js) -->
+                    <li class="ajustes-item">
+                        <details class="ajustes">
+                            <summary class="ajustes-resumo">
+                                Ajustes de leitura
+                            </summary>
+                            <div class="ajustes-painel">
+                                <p class="ajustes-titulo">Tamanho da fonte</p>
+                                <div class="controle-fonte" role="group" aria-label="Tamanho da fonte">
+                                    <button type="button" data-acao="diminuir" aria-label="Diminuir a fonte"></button>
+                                    <button type="button" data-acao="resetar" aria-label="Voltar ao tamanho padrão da fonte"></button>
+                                    <button type="button" data-acao="aumentar" aria-label="Aumentar a fonte"></button>
+                                </div>
+                                <p class="ajustes-titulo">Leitura em voz alta</p>
+                                <div id="painel-leitura" class="painel-leitura" role="group" aria-label="Controles de leitura em voz alta">
+                                    <p id="leitura-status" class="leitura-status" role="status"></p>
+                                    <div class="leitura-botoes">
+                                        <button id="btn-ouvir" type="button" aria-label="Ouvir o conteúdo da página, a partir da seleção ou do trecho visível">Ouvir</button>
+                                        <button id="btn-pausar" type="button" disabled aria-label="Pausar a leitura">Pausar</button>
+                                        <button id="btn-parar" type="button" disabled aria-label="Parar a leitura">Parar</button>
+                                        <button id="btn-ir-trecho" type="button" hidden aria-label="Ir para o trecho que está sendo lido"> Ir para o trecho lido </button>
+                                    </div>
+                                    <div class="leitura-velocidade">
+                                        <label for="leitura-rate">Velocidade: <span id="leitura-rate-valor">1x</span></label>
+                                        <input id="leitura-rate" type="range" min="0.5" max="2" step="0.1" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal: o link "Pular para o conteúdo" leva para cá (id="conteudo") -->
+    <main id="conteudo" tabindex="-1">
+        <!-- Topo da página, com o título principal (h1) -->
+        <section class="bg-surface braille">
+            <div class="container-site py-14">
+                <h1 class="text-4xl md:text-5xl">Fale com a gente</h1>
+                <div class="mt-4 max-w-3xl text-lg">
+                    <p>Quer doar um equipamento, agendar uma retirada ou ser voluntário? Preencha o formulário
+                        abaixo. Respondemos em até 2 dias úteis. Campos marcados com * são obrigatórios.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulário de contato e, ao lado, os dados da ReciclaTech -->
+        <div class="container-site grid gap-10 py-14 lg:grid-cols-[2fr_1fr]">
+            <!-- Formulário de contato (validação em script.js, e-mail em contato.js) -->
+            <form class="space-y-6" novalidate data-form="contato">
+                <fieldset class="key p-5">
+                    <legend class="px-2 font-bold text-primary">Quero... *</legend>
+                    <div class="flex flex-wrap gap-6">
+                        <label class="flex min-h-12 items-center gap-2">
+                            <input class="h-5 w-5" name="quero" type="radio" value="Doar equipamentos" required>
+                            Doar equipamentos
+                        </label>
+                        <label class="flex min-h-12 items-center gap-2">
+                            <input class="h-5 w-5" name="quero" type="radio" value="Ser voluntário" required>
+                            Ser voluntário
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset class="key space-y-4 p-5">
+                    <legend class="px-2 font-bold text-primary">Seus dados</legend>
+                    <div>
+                        <label class="font-bold" for="nome">Nome completo *</label>
+                        <input id="nome" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" autocomplete="name" minlength="3" name="nome" required>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="email">E-mail *</label>
+                        <input id="email" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" autocomplete="email" name="email" type="email" required>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="tel">Telefone *</label>
+                        <p id="tel-dica" class="text-base text-muted-foreground">Exemplo: (11) 91234-5678</p>
+                        <input id="tel" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" autocomplete="tel-national" inputmode="tel" name="tel" pattern="\(\d{2}\) \d{4,5}-\d{4}" type="tel" required aria-describedby="tel-dica">
+                    </div>
+                    <div>
+                        <label class="font-bold" for="cep">CEP</label>
+                        <input id="cep" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" autocomplete="postal-code" inputmode="numeric" name="cep" pattern="\d{5}-\d{3}" placeholder="00000-000">
+                    </div>
+                </fieldset>
+                <fieldset class="key space-y-4 p-5">
+                    <legend class="px-2 font-bold text-primary">Doação</legend>
+                    <div>
+                        <label class="font-bold" for="tipo">Tipo de equipamento</label>
+                        <select id="tipo" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" name="tipo">
+                            <option>Computador</option>
+                            <option>Notebook</option>
+                            <option>Monitor</option>
+                            <option>Celular</option>
+                            <option>Teclado/mouse</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="qtd">Quantidade de equipamentos</label>
+                        <input id="qtd" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" max="100" min="1" name="qtd" type="number">
+                    </div>
+                    <div>
+                        <label class="font-bold" for="data">Data preferida para a coleta</label>
+                        <input id="data" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" name="data" type="date">
+                    </div>
+                </fieldset>
+                <fieldset class="key space-y-4 p-5">
+                    <legend class="px-2 font-bold text-primary">Voluntariado e mensagem</legend>
+                    <div>
+                        <label class="font-bold" for="ajuda">Como você pode ajudar?</label>
+                        <select id="ajuda" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" name="ajuda">
+                            <option>Técnico</option>
+                            <option>Instrutor</option>
+                            <option>Intérprete de Libras</option>
+                            <option>Coleta</option>
+                            <option>Comunicação</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="msg">Mensagem</label>
+                        <textarea id="msg" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3 py-2" maxlength="500" name="msg" rows="5"></textarea>
+                    </div>
+                    <label class="flex min-h-12 items-center gap-3">
+                        <input class="h-5 w-5" name="aceite" type="checkbox" required>
+                        Li e concordo com o uso dos meus dados para contato *
+                    </label>
+                </fieldset>
+                <div class="flex gap-4">
+                    <button class="key key-press min-h-12 bg-primary px-8 font-bold text-primary-foreground hover:bg-primary-edge" type="submit">Enviar</button>
+                    <button class="key key-press min-h-12 border-olive px-8 font-bold text-olive" type="reset">Limpar</button>
+                </div>
+            </form>
+            <!-- Dados de contato da ReciclaTech -->
+            <aside>
+                <h2 class="text-2xl">Dados da ReciclaTech</h2>
+                <address class="key mt-4 space-y-2 p-5 not-italic">
+                    <p>Rua das Teclas, 100 – Tatuapé, São Paulo – SP</p>
+                    <p>
+                        <a class="text-olive underline" href="mailto:contato@reciclatech.org.br">contato@reciclatech.org.br</a>
+                    </p>
+                    <p>Telefone/WhatsApp: (11) 3000-0000</p>
+                    <p>Atendimento: segunda a sexta, das 9h às 18h</p>
+                </address>
+            </aside>
+        </div>
+        <!-- Doação em dinheiro: validação, rascunho e e-mail ficam em doacao.js -->
+
+        <!-- Seção "Doação em dinheiro" -->
+        <section id="doacao-dinheiro" class="container-site pb-14" aria-labelledby="doacao-titulo">
+            <h2 id="doacao-titulo" class="text-3xl">Doação em dinheiro</h2>
+            <div class="mt-4 max-w-3xl text-lg">
+                <p>Sua contribuição ajuda a consertar equipamentos e a levar tecnologia acessível a quem precisa. Campos marcados com * são obrigatórios.</p>
+            </div>
+            <p class="doacao-aviso key mt-6 max-w-3xl p-5"><strong>Aviso:</strong> a ReciclaTech é um projeto
+                acadêmico fictício. Nenhuma cobrança real é feita, e a chave PIX e as demais instruções de
+                pagamento são apenas ilustrativas.</p>
+            <div class="mt-8 grid gap-10 lg:grid-cols-[2fr_1fr]">
+                <!-- Formulário de doação: a lógica fica em doacao.js (data-form="doacao" faz o script.js ignorá-lo) -->
+                <form id="form-doacao" class="space-y-6" novalidate data-form="doacao">
+                    <!-- Dados de quem doa -->
+                    <fieldset class="key space-y-4 p-5">
+                        <legend class="px-2 font-bold text-primary">Seus dados</legend>
+                        <div>
+                            <label class="font-bold" for="doacao-nome">Nome completo *</label>
+                            <input id="doacao-nome" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" name="nome" type="text" autocomplete="name" minlength="3" maxlength="120" required aria-describedby="doacao-nome-erro">
+                            <p id="doacao-nome-erro" class="doacao-erro"></p>
+                        </div>
+                        <div>
+                            <label class="font-bold" for="doacao-email">E-mail *</label>
+                            <p id="doacao-email-dica" class="text-base text-muted-foreground">A confirmação da doação será enviada para este e-mail.</p>
+                            <input id="doacao-email" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="doacao-email-dica doacao-email-erro">
+                            <p id="doacao-email-erro" class="doacao-erro"></p>
+                        </div>
+                        <div>
+                            <label class="font-bold" for="doacao-tel">Telefone</label>
+                            <p id="doacao-tel-dica" class="text-base text-muted-foreground">Opcional. Exemplo: (11) 91234-5678</p>
+                            <input id="doacao-tel" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" name="tel" type="tel" inputmode="tel" autocomplete="tel-national" maxlength="16" pattern="\(\d{2}\) \d{4,5}-\d{4}" aria-describedby="doacao-tel-dica doacao-tel-erro">
+                            <p id="doacao-tel-erro" class="doacao-erro"></p>
+                        </div>
+                    </fieldset>
+                    <!-- Valor -->
+                    <fieldset class="key space-y-4 p-5">
+                        <legend class="px-2 font-bold text-primary">Valor da doação *</legend>
+                        <p id="doacao-valor-dica" class="text-base text-muted-foreground">Escolha um valor ou a opção “Outro valor” (mínimo de R$ 5,00).</p>
+                        <div class="flex flex-wrap gap-3">
+                            <label class="doacao-opcao">
+                                <input type="radio" name="valor" value="20" required aria-describedby="doacao-valor-dica doacao-valor-erro">
+                                R$ 20
+                            </label>
+                            <label class="doacao-opcao">
+                                <input type="radio" name="valor" value="50" required aria-describedby="doacao-valor-dica doacao-valor-erro">
+                                R$ 50
+                            </label>
+                            <label class="doacao-opcao">
+                                <input type="radio" name="valor" value="100" required aria-describedby="doacao-valor-dica doacao-valor-erro">
+                                R$ 100
+                            </label>
+                            <label class="doacao-opcao">
+                                <input type="radio" name="valor" value="outro" required aria-describedby="doacao-valor-dica doacao-valor-erro">
+                                Outro valor
+                            </label>
+                        </div>
+                        <p id="doacao-valor-erro" class="doacao-erro"></p>
+                        <div id="doacao-outro-bloco" hidden>
+                            <label class="font-bold" for="doacao-valor-outro">Outro valor, em reais *</label>
+                            <p id="doacao-outro-dica" class="text-base text-muted-foreground">Mínimo de R$ 5,00. Use vírgula para os centavos. Exemplo: 35,50</p>
+                            <input id="doacao-valor-outro" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3" name="valorOutro" type="text" inputmode="decimal" autocomplete="off" maxlength="12" aria-describedby="doacao-outro-dica doacao-outro-erro">
+                            <p id="doacao-outro-erro" class="doacao-erro"></p>
+                        </div>
+                    </fieldset>
+                    <!-- Frequência -->
+                    <fieldset class="key space-y-4 p-5">
+                        <legend class="px-2 font-bold text-primary">Frequência *</legend>
+                        <div class="flex flex-wrap gap-3">
+                            <label class="doacao-opcao">
+                                <input type="radio" name="frequencia" value="unica" required aria-describedby="doacao-frequencia-erro">
+                                Única vez
+                            </label>
+                            <label class="doacao-opcao">
+                                <input type="radio" name="frequencia" value="mensal" required aria-describedby="doacao-frequencia-erro">
+                                Mensal
+                            </label>
+                        </div>
+                        <p id="doacao-frequencia-erro" class="doacao-erro"></p>
+                    </fieldset>
+                    <!-- Forma de pagamento: só mostra instruções, não coleta cartão nem dados bancários -->
+                    <fieldset class="key space-y-4 p-5">
+                        <legend class="px-2 font-bold text-primary">Forma de pagamento *</legend>
+                        <p id="doacao-pagamento-dica" class="text-base text-muted-foreground">Não pedimos
+                            número de cartão nem dados bancários. As instruções aparecem logo abaixo das
+                            opções.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <label class="doacao-opcao">
+                                <input type="radio" name="pagamento" value="pix" required aria-describedby="doacao-pagamento-dica doacao-pagamento-erro">
+                                PIX
+                            </label>
+                            <label class="doacao-opcao">
+                                <input type="radio" name="pagamento" value="boleto" required aria-describedby="doacao-pagamento-dica doacao-pagamento-erro">
+                                Boleto
+                            </label>
+                            <label class="doacao-opcao">
+                                <input type="radio" name="pagamento" value="transferencia" required aria-describedby="doacao-pagamento-dica doacao-pagamento-erro">
+                                Transferência
+                            </label>
+                        </div>
+                        <p id="doacao-pagamento-erro" class="doacao-erro"></p>
+                        <div class="doacao-instrucao" hidden data-instrucao="pix">
+                            <p class="font-bold">Pagamento por PIX (ilustrativo)</p>
+                            <p class="mt-2">Chave PIX fictícia:
+                                <code id="doacao-chave-pix" class="doacao-chave">chave-pix-exemplo@reciclatech.org.br</code></p>
+                            <div class="mt-3 flex flex-wrap items-center gap-3">
+                                <button id="doacao-copiar-pix" class="key key-press min-h-12 border-olive px-5 font-bold text-olive" type="button">Copiar chave PIX</button>
+                                <p id="doacao-copiar-status" class="font-bold" role="status"></p>
+                            </div>
+                            <p class="mt-2">Esta chave é só um exemplo: nenhum pagamento é recebido.</p>
+                        </div>
+                        <div class="doacao-instrucao" hidden data-instrucao="boleto">
+                            <p class="font-bold">Pagamento por boleto (ilustrativo)</p>
+                            <p class="mt-2">Em uma ONG real, o boleto seria enviado para o seu e-mail. Neste projeto acadêmico nenhum boleto é gerado.</p>
+                        </div>
+                        <div class="doacao-instrucao" hidden data-instrucao="transferencia">
+                            <p class="font-bold">Pagamento por transferência (ilustrativo)</p>
+                            <p class="mt-2">Em uma ONG real, os dados da conta da ReciclaTech seriam enviados
+                                por e-mail. Você nunca precisa informar os dados da sua conta neste
+                                formulário.</p>
+                        </div>
+                    </fieldset>
+                    <!-- Mensagem e consentimento -->
+                    <fieldset class="key space-y-4 p-5">
+                        <legend class="px-2 font-bold text-primary">Mensagem e confirmação</legend>
+                        <div>
+                            <label class="font-bold" for="doacao-mensagem">Mensagem</label>
+                            <p id="doacao-mensagem-dica" class="text-base text-muted-foreground">Opcional, até 500 caracteres.</p>
+                            <textarea id="doacao-mensagem" class="mt-1 block min-h-12 w-full rounded-lg border-2 border-input bg-background px-3 py-2" name="mensagem" rows="4" maxlength="500" aria-describedby="doacao-mensagem-dica doacao-mensagem-contador"></textarea>
+                            <p id="doacao-mensagem-contador" class="text-base text-muted-foreground">0 de 500 caracteres</p>
+                        </div>
+                        <div>
+                            <label class="doacao-aceite flex min-h-12 items-center gap-3">
+                                <input id="doacao-aceite" class="h-5 w-5" name="aceite" type="checkbox" required aria-describedby="doacao-aceite-erro">
+                                Li e concordo com o uso dos meus dados para contato *
+                            </label>
+                            <p id="doacao-aceite-erro" class="doacao-erro"></p>
+                        </div>
+                    </fieldset>
+                    <p class="text-base text-muted-foreground">Enquanto você preenche, guardamos um rascunho
+                        só neste navegador. Ele é apagado quando a doação é enviada ou quando você clica em
+                        “Limpar”.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button id="doacao-enviar" class="key key-press min-h-12 bg-primary px-8 font-bold text-primary-foreground hover:bg-primary-edge" type="submit">Enviar doação</button>
+                        <button id="doacao-limpar" class="key key-press min-h-12 border-olive px-8 font-bold text-olive" type="button">Limpar</button>
+                    </div>
+                    <!-- Mensagens: ficam sempre no HTML (vazias) para os leitores de tela anunciarem -->
+                    <div class="space-y-3">
+                        <p id="doacao-status" class="doacao-msg" tabindex="-1" role="status"></p>
+                        <p id="doacao-alerta" class="doacao-msg doacao-msg-erro" tabindex="-1" role="alert"></p>
+                    </div>
+                </form>
+                <!-- Quadro "Como a doação ajudaria" e a data da última doação enviada -->
+                <aside aria-labelledby="doacao-uso-titulo">
+                    <h3 id="doacao-uso-titulo" class="text-2xl">Como a doação ajudaria</h3>
+                    <ul class="key mt-4 space-y-3 p-5">
+                        <li>R$ 20 ajudam a comprar peças para consertar teclados e mouses.</li>
+                        <li>R$ 50 ajudam a reformar um computador para uma escola pública.</li>
+                        <li>R$ 100 ajudam a manter uma oficina de informática acessível.</li>
+                    </ul>
+                    <p class="mt-3 text-base text-muted-foreground">Exemplos ilustrativos de um projeto acadêmico.</p>
+                    <p id="doacao-ultima" class="key mt-4 p-5 font-bold" hidden></p>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé (igual em todas as páginas) -->
+    <footer class="site-footer bg-footer text-footer-foreground">
+        <div class="container-site grid gap-10 py-16 md:grid-cols-3 text-sm">
+            <div>
+                <span class="inline-flex items-center gap-2 font-bold text-xl"><svg height="40" viewBox="0 0 40 40" width="40" aria-hidden="true"><rect class="fill-none stroke-lime" height="36" rx="6" stroke-width="2" width="36" x="2" y="2"></rect><path class="stroke-lime" d="M16 12 l4-3 4 7 -4 0 M26 18 l2 5 -8 0 2-4 M16 24 l-5-1 4-7 2 3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path><circle class="fill-lime" cx="13" cy="30" r="1.7"></circle><circle class="fill-lime" cx="20" cy="30" r="1.7"></circle><circle class="fill-lime" cx="27" cy="30" r="1.7"></circle></svg><span class="text-primary-foreground">ReciclaTech</span></span>
+                <p class="mt-3">Tecnologia reciclada, acessível para todos</p>
+            </div>
+            <nav aria-label="Rodapé">
+                <h2 class="sr-only">Links</h2>
+                <!-- Mesmos links do menu principal, na mesma ordem, mais o Orçamento -->
+                <ul class="grid gap-3 sm:grid-cols-2">
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="index.html">Início</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="sobre.html">Sobre</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="projetos.html">Projetos</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="impacto.html">Impacto</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="acessibilidade.html">Acessibilidade</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="galeria.html">Galeria</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="midia.html">Mídia</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="noticias.html">Notícias</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline active" href="contato.html" data-status="active" aria-current="page">Contato</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="orcamento-hospedagem.html">Orçamento de hospedagem</a>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+                <!-- O título fica fora do <address>: <address> não pode ter títulos dentro -->
+                <h2 class="sr-only">Contato</h2>
+                <address class="not-italic">
+                    <p>
+                        <svg class="lucide lucide-map-pin" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Rua das Teclas, 100 – Tatuapé, São Paulo – SP
+                    </p>
+                    <p>
+                        <svg class="lucide lucide-mail" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+                            <rect height="16" rx="2" width="20" x="2" y="4"></rect>
+                        </svg>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="mailto:contato@reciclatech.org.br">contato@reciclatech.org.br</a>
+                    </p>
+                    <p>
+                        <svg class="lucide lucide-phone" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
+                        </svg>
+                        (11) 3000-0000
+                    </p>
+                </address>
+            </div>
+        </div>
+        <p class="container-site border-t border-footer-foreground/30 py-5 text-sm">A ReciclaTech é uma
+            organização fictícia, criada como projeto acadêmico da disciplina de Front-End da UNICID (2026).
+            Números, depoimentos e dados de contato são ilustrativos. © 2026 Equipe ReciclaTech.</p>
+    </footer>
+
+    <!-- Scripts no fim da página (o HTML já foi lido quando eles rodam). A ordem importa: script.js primeiro -->
+    <script src="js/script.js"></script>
+    <script src="js/tamanho.js"></script>
+    <script src="js/leitura-voz.js"></script>
+    <!-- E-mails pelo EmailJS: o SDK, a doação em dinheiro e o formulário de contato (depois do script.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="js/doacao.js"></script>
+    <script src="js/contato.js"></script>
+</body>
+
+</html>
