@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Galeria | ReciclaTech</title>
+    <meta name="description" content="Cada etapa do caminho de um computador até a sala de aula, em imagens.">
+    <!-- Fonte Atkinson Hyperlegible, criada para facilitar a leitura de quem tem baixa visão -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Link "Pular para o conteúdo principal": só aparece ao navegar com a tecla Tab -->
+    <a class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 bg-background p-3 font-bold text-primary" href="#conteudo">Pular para o conteúdo principal</a>
+
+    <!-- Barra de acessibilidade: botão "Alto contraste" (script.js) -->
+    <div class="site-a11y bg-primary text-primary-foreground text-sm">
+        <div class="container-site flex flex-wrap justify-end gap-1">
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 font-bold hover:underline" data-a11y="hc" aria-pressed="false">
+                Alto contraste
+            </button>
+        </div>
+    </div>
+
+    <!-- Cabeçalho fixo no topo: logo, botão "Menu" (só no celular) e menu principal -->
+    <header class="border-b bg-background sticky top-0 z-40">
+        <div class="container-site flex items-center justify-between py-3">
+            <a href="index.html" aria-label="ReciclaTech – página inicial">
+                <!-- Logo oficial: a primeira imagem aparece no modo normal e a segunda (versão para fundo escuro) só no
+                     alto contraste. A imagem escondida tem display: none, então o leitor de tela anuncia só uma.
+                     O nome do link vem do aria-label. -->
+                <img class="logo-site logo-normal" alt="ReciclaTech" height="192" src="files/logo-reciclatech.webp" width="511">
+                <img class="logo-site logo-contraste" alt="ReciclaTech" height="192" loading="lazy" src="files/logo-reciclatech-contraste.webp" width="511">
+            </a>
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 py-2 lg:hidden min-h-12 px-4 font-bold text-primary" aria-controls="menu" aria-expanded="false">
+                <svg class="lucide lucide-menu" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4 5h16"></path>
+                    <path d="M4 12h16"></path>
+                    <path d="M4 19h16"></path>
+                </svg>
+                Menu
+            </button>
+            <!-- Menu principal (no celular, abre e fecha pelo botão "Menu"; o link da página atual tem aria-current="page") -->
+            <nav id="menu" class="site-nav hidden absolute left-0 right-0 top-full bg-background border-b lg:static lg:block lg:border-0" aria-label="Menu principal">
+                <ul class="container-site flex flex-col lg:flex-row lg:p-0 gap-1">
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="index.html">
+                            Início
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="sobre.html">
+                            Sobre
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="projetos.html">
+                            Projetos
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="impacto.html">
+                            Impacto
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="acessibilidade.html">
+                            Acessibilidade
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold active" href="galeria.html" data-status="active" aria-current="page">
+                            Galeria
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="midia.html">
+                            Mídia
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="noticias.html">
+                            Notícias
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex items-center px-2 text-foreground border-b-[3px] border-transparent data-[status=active]:border-olive data-[status=active]:font-bold" href="contato.html">
+                            Contato
+                        </a>
+                    </li>
+                    <!-- Painel "Ajustes de leitura": tamanho da fonte (tamanho.js) e leitura em voz alta (leitura-voz.js) -->
+                    <li class="ajustes-item">
+                        <details class="ajustes">
+                            <summary class="ajustes-resumo">
+                                Ajustes de leitura
+                            </summary>
+                            <div class="ajustes-painel">
+                                <p class="ajustes-titulo">Tamanho da fonte</p>
+                                <div class="controle-fonte" role="group" aria-label="Tamanho da fonte">
+                                    <button type="button" data-acao="diminuir" aria-label="Diminuir a fonte"></button>
+                                    <button type="button" data-acao="resetar" aria-label="Voltar ao tamanho padrão da fonte"></button>
+                                    <button type="button" data-acao="aumentar" aria-label="Aumentar a fonte"></button>
+                                </div>
+                                <p class="ajustes-titulo">Leitura em voz alta</p>
+                                <div id="painel-leitura" class="painel-leitura" role="group" aria-label="Controles de leitura em voz alta">
+                                    <p id="leitura-status" class="leitura-status" role="status"></p>
+                                    <div class="leitura-botoes">
+                                        <button id="btn-ouvir" type="button" aria-label="Ouvir o conteúdo da página, a partir da seleção ou do trecho visível">Ouvir</button>
+                                        <button id="btn-pausar" type="button" disabled aria-label="Pausar a leitura">Pausar</button>
+                                        <button id="btn-parar" type="button" disabled aria-label="Parar a leitura">Parar</button>
+                                        <button id="btn-ir-trecho" type="button" hidden aria-label="Ir para o trecho que está sendo lido">Ir para o trecho lido</button>
+                                    </div>
+                                    <div class="leitura-velocidade">
+                                        <label for="leitura-rate">Velocidade: <span id="leitura-rate-valor">1x</span></label>
+                                        <input id="leitura-rate" type="range" min="0.5" max="2" step="0.1" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal: o link "Pular para o conteúdo" leva para cá (id="conteudo") -->
+    <main id="conteudo" tabindex="-1">
+        <!-- Topo da página, com o título principal (h1) -->
+        <section class="bg-surface braille">
+            <div class="container-site py-14">
+                <h1 class="text-4xl md:text-5xl">Galeria</h1>
+                <div class="mt-4 max-w-3xl text-lg">
+                    <p>Conheça, em imagens, cada etapa do caminho que um computador percorre até chegar a uma sala de aula.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grade com as 6 fotos (em files/): cada botão abre a foto ampliada (galeria.js).
+             loading="lazy" nas fotos da segunda linha: só carregam quando chegam perto da tela -->
+        <div class="container-site grid gap-6 py-14 sm:grid-cols-2 lg:grid-cols-3">
+            <figure class="key overflow-hidden p-3">
+                <button class="block w-full" type="button" data-galeria aria-label="Ampliar imagem: Voluntários entregando computadores em frente a uma escola">
+                    <img class="galeria-foto block aspect-video w-full rounded-xl bg-surface" alt="Voluntários entregando computadores em frente a uma escola" decoding="async" height="714" src="files/galeria-1-entrega-escola.webp" width="1280">
+                </button>
+                <figcaption class="mt-3 text-base">Voluntários entregando computadores em frente a uma escola.
+                    <span class="text-muted-foreground">Imagem gerada por IA (Google Gemini)</span></figcaption>
+            </figure>
+            <figure class="key overflow-hidden p-3">
+                <button class="block w-full" type="button" data-galeria aria-label="Ampliar imagem: Oficina com computadores recuperados, prontos para a doação">
+                    <img class="galeria-foto block aspect-video w-full rounded-xl bg-surface" alt="Oficina com computadores recuperados, prontos para a doação" decoding="async" height="765" src="files/galeria-2-oficina.webp" width="1024">
+                </button>
+                <figcaption class="mt-3 text-base">Oficina com computadores recuperados, prontos para a doação.
+                    <span class="text-muted-foreground">Imagem gerada por IA (Google Gemini)</span></figcaption>
+            </figure>
+            <figure class="key overflow-hidden p-3">
+                <button class="block w-full" type="button" data-galeria aria-label="Ampliar imagem: Caixas separadas com placas, cabos e baterias para reciclagem">
+                    <img class="galeria-foto block aspect-video w-full rounded-xl bg-surface" alt="Caixas separadas com placas, cabos e baterias para reciclagem" decoding="async" height="714" src="files/galeria-3-separacao.webp" width="1280">
+                </button>
+                <figcaption class="mt-3 text-base">Caixas separadas com placas, cabos e baterias para reciclagem.
+                    <span class="text-muted-foreground">Imagem gerada por IA (Google Gemini)</span></figcaption>
+            </figure>
+            <figure class="key overflow-hidden p-3">
+                <button class="block w-full" type="button" data-galeria aria-label="Ampliar imagem: Mãos em um teclado com braile">
+                    <img class="galeria-foto block aspect-video w-full rounded-xl bg-surface" alt="Mãos em um teclado com braile" decoding="async" height="572" loading="lazy" src="files/galeria-4-teclado-braile.webp" width="1024">
+                </button>
+                <figcaption class="mt-3 text-base">Mãos em um teclado com braile.
+                    <span class="text-muted-foreground">Imagem gerada por IA (Google Gemini)</span></figcaption>
+            </figure>
+            <figure class="key overflow-hidden p-3">
+                <button class="block w-full" type="button" data-galeria aria-label="Ampliar imagem: Professores aprendendo a usar leitor de tela">
+                    <img class="galeria-foto block aspect-video w-full rounded-xl bg-surface" alt="Professores aprendendo a usar leitor de tela" decoding="async" height="714" loading="lazy" src="files/galeria-5-leitor-de-tela.webp" width="1280">
+                </button>
+                <figcaption class="mt-3 text-base">Professores aprendendo a usar leitor de tela.
+                    <span class="text-muted-foreground">Imagem gerada por IA (Google Gemini)</span></figcaption>
+            </figure>
+            <figure class="key overflow-hidden p-3">
+                <button class="block w-full" type="button" data-galeria aria-label="Ampliar imagem: Trabalhador separando lixo eletrônico em um centro de reciclagem">
+                    <img class="galeria-foto block aspect-video w-full rounded-xl bg-surface" alt="Trabalhador separando lixo eletrônico em um centro de reciclagem" decoding="async" height="414" loading="lazy" src="files/galeria-6-centro-reciclagem.webp" width="736">
+                </button>
+                <figcaption class="mt-3 text-base">Trabalhador separando lixo eletrônico em um centro de reciclagem.
+                    <span class="text-muted-foreground">Imagem gerada por IA (Google Gemini)</span></figcaption>
+            </figure>
+        </div>
+        <!-- Janela da imagem ampliada (aberta pelos botões "Ampliar imagem"; lógica em galeria.js) -->
+        <dialog id="galeria-dialogo" class="galeria-dialogo" aria-labelledby="galeria-dialogo-legenda">
+            <div class="galeria-dialogo-conteudo key p-5">
+                <figure>
+                    <div class="galeria-dialogo-imagem"></div>
+                    <figcaption id="galeria-dialogo-legenda" class="mt-3 text-lg"></figcaption>
+                </figure>
+                <button class="key key-press mt-4 min-h-12 bg-primary px-8 font-bold text-primary-foreground hover:bg-primary-edge" type="button" data-fechar>Fechar</button>
+            </div>
+        </dialog>
+    </main>
+
+    <!-- Rodapé (igual em todas as páginas) -->
+    <footer class="site-footer bg-footer text-footer-foreground">
+        <div class="container-site grid gap-10 py-16 md:grid-cols-3 text-sm">
+            <div>
+                <span class="inline-flex items-center gap-2 font-bold text-xl"><svg height="40" viewBox="0 0 40 40" width="40" aria-hidden="true"><rect class="fill-none stroke-lime" height="36" rx="6" stroke-width="2" width="36" x="2" y="2"></rect><path class="stroke-lime" d="M16 12 l4-3 4 7 -4 0 M26 18 l2 5 -8 0 2-4 M16 24 l-5-1 4-7 2 3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path><circle class="fill-lime" cx="13" cy="30" r="1.7"></circle><circle class="fill-lime" cx="20" cy="30" r="1.7"></circle><circle class="fill-lime" cx="27" cy="30" r="1.7"></circle></svg><span class="text-primary-foreground">ReciclaTech</span></span>
+                <p class="mt-3">Tecnologia reciclada, acessível para todos</p>
+            </div>
+            <nav aria-label="Rodapé">
+                <h2 class="sr-only">Links</h2>
+                <!-- Mesmos links do menu principal, na mesma ordem, mais o Orçamento -->
+                <ul class="grid gap-3 sm:grid-cols-2">
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="index.html">Início</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="sobre.html">Sobre</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="projetos.html">Projetos</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="impacto.html">Impacto</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="acessibilidade.html">Acessibilidade</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline active" href="galeria.html" data-status="active" aria-current="page">Galeria</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="midia.html">Mídia</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="noticias.html">Notícias</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="contato.html">Contato</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="orcamento-hospedagem.html">Orçamento de hospedagem</a>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+                <!-- O título fica fora do <address>: <address> não pode ter títulos dentro -->
+                <h2 class="sr-only">Contato</h2>
+                <address class="not-italic">
+                    <p>
+                        <svg class="lucide lucide-map-pin" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Rua das Teclas, 100 – Tatuapé, São Paulo – SP
+                    </p>
+                    <p>
+                        <svg class="lucide lucide-mail" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+                            <rect height="16" rx="2" width="20" x="2" y="4"></rect>
+                        </svg>
+                        <a class="hover:text-lime underline-offset-4 hover:underline" href="mailto:contato@reciclatech.org.br">contato@reciclatech.org.br</a>
+                    </p>
+                    <p>
+                        <svg class="lucide lucide-phone" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
+                        </svg>
+                        (11) 3000-0000
+                    </p>
+                </address>
+            </div>
+        </div>
+        <p class="container-site border-t border-footer-foreground/30 py-5 text-sm">A ReciclaTech é uma
+            organização fictícia, criada como projeto acadêmico da disciplina de Front-End da UNICID (2026).
+            Números, depoimentos e dados de contato são ilustrativos. © 2026 Equipe ReciclaTech.</p>
+    </footer>
+
+    <!-- Scripts no fim da página (o HTML já foi lido quando eles rodam). A ordem importa: script.js primeiro -->
+    <script src="js/script.js"></script>
+    <script src="js/tamanho.js"></script>
+    <script src="js/leitura-voz.js"></script>
+    <script src="js/galeria.js"></script>
+</body>
+
+</html>
