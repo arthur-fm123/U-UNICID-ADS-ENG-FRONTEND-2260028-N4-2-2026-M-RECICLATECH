@@ -1,0 +1,2215 @@
+/* =========================================================
+   ReciclaTech – folha de estilos (CSS3)
+   Projeto acadêmico da disciplina de Front-End da UNICID (2026)
+
+   Como este arquivo está organizado:
+     1. Variáveis e tema
+     2. Base (reset e estilos dos elementos HTML)
+     3. Utilitários (classes pequenas, como .mt-4 e .text-primary)
+     4. Componentes do site (barra de acessibilidade, menu, rodapé)
+     5. Página inicial
+     6. Ajustes de leitura (tamanho da fonte e leitura em voz alta)
+     7. Alto contraste
+     8. Formulários
+     9. Doação em dinheiro
+    10. Galeria
+    11. Telas menores
+
+   Sobre o @layer: as seções 1 a 3 ficam dentro de "camadas"
+   (@layer). Quando duas regras disputam o mesmo elemento, a regra
+   de uma camada posterior vence a de uma anterior, seja qual for o
+   seletor. A ordem das camadas é a da primeira vez que cada uma
+   aparece: properties → theme → base → components → utilities.
+   As regras das seções 4 a 11 estão fora de qualquer camada e por
+   isso vencem as regras das camadas. Assim os estilos próprios do
+   site sempre podem corrigir as classes utilitárias.
+   ========================================================= */
+
+
+/* =========================================================
+   1. VARIÁVEIS E TEMA
+   ========================================================= */
+
+/* Valores iniciais das variáveis --tw-* usadas pelas classes utilitárias.
+   As classes utilitárias vieram do Tailwind CSS e montam alguns valores
+   em partes: por exemplo, .shadow guarda a sombra em --tw-shadow, e o
+   box-shadow final soma várias dessas partes. Cada elemento começa com
+   os valores abaixo e só muda quando recebe uma classe
+   (por isso não usamos @property, que o validador do W3C não reconhece). */
+@layer properties {
+  *,
+  ::before,
+  ::after,
+  ::backdrop {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-space-y-reverse: 0;
+    --tw-border-style: solid;
+    --tw-leading: initial;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-color: initial;
+    --tw-inset-shadow: 0 0 #0000;
+    --tw-ring-color: initial;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-inset-ring-shadow: 0 0 #0000;
+    --tw-ring-inset: initial;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-duration: initial;
+    --tw-ease: initial;
+  }
+}
+
+/* Escalas do tema: espaçamentos, tamanhos de texto, larguras máximas.
+   As variáveis --color-* só apontam para a paleta do site (logo abaixo),
+   assim as classes e a paleta usam os mesmos nomes. */
+@layer theme {
+  :root,
+  :host {
+    --font-sans: "Atkinson Hyperlegible", system-ui, sans-serif;
+    --font-mono:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    /* Base dos espaçamentos: .mt-4 = 4 × 0,25rem = 1rem */
+    --spacing: 0.25rem;
+    --container-3xl: 48rem;
+    --container-4xl: 56rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --text-4xl: 2.25rem;
+    --text-4xl--line-height: calc(2.5 / 2.25);
+    --text-5xl: 3rem;
+    --text-5xl--line-height: 1;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    --aspect-video: 16 / 9;
+    --default-transition-duration: 0.15s;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+    --default-mono-font-family: var(--font-mono);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-primary-edge: var(--primary-edge);
+    --color-sea: var(--sea);
+    --color-spring: var(--spring);
+    --color-surface: var(--surface);
+    --color-border: var(--border);
+  }
+}
+
+/* Paleta do site. As cores usam oklch(luminosidade croma matiz):
+   o primeiro número diz o quanto a cor é clara (0% = preto,
+   100% = branco), o que ajuda a garantir o contraste mínimo AA.
+   No alto contraste, várias destas variáveis são trocadas
+   (veja a seção 7). */
+:root {
+  --radius: 0.5rem;
+  --background: oklch(100% 0 0);
+  --foreground: oklch(22% 0 0);
+  --primary: oklch(37% 0.075 155);
+  --primary-foreground: oklch(100% 0 0);
+  --primary-edge: oklch(31% 0.07 152);
+  --olive: oklch(47% 0.12 131);
+  --sea: oklch(56% 0.06 155);
+  --lime: oklch(74% 0.21 147);
+  --aqua: oklch(85% 0.24 155);
+  --spring: oklch(87% 0.26 145);
+  --surface: oklch(97% 0.01 155);
+  --footer: oklch(22% 0 0);
+  --footer-foreground: oklch(85% 0 0);
+  --muted-foreground: oklch(40% 0.01 155);
+  --accent: oklch(97% 0.01 155);
+  --accent-foreground: oklch(39% 0.08 150);
+  --destructive: oklch(50% 0.2 27);
+  --border: oklch(56% 0.06 155 / 0.45);
+  --input: oklch(56% 0.06 155);
+  --ring: oklch(87% 0.26 145);
+}
+
+
+/* =========================================================
+   2. BASE
+   Primeiro um "reset" (zera as diferenças entre navegadores),
+   depois os estilos dos elementos HTML do site.
+   ========================================================= */
+
+@layer base {
+  /* ---------- Reset ---------- */
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop {
+    box-sizing: border-box;
+    border: 0px solid;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  html,
+  :host {
+    text-size-adjust: 100%;
+    tab-size: 4;
+    line-height: 1.5;
+    font-family: var(--default-font-family);
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  strong {
+    font-weight: bolder;
+  }
+
+  code,
+  kbd {
+    font-family: var(--default-mono-font-family);
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    font-size: 1em;
+  }
+
+  table {
+    text-indent: 0px;
+    border-color: inherit;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  summary {
+    display: list-item;
+  }
+
+  ol,
+  ul {
+    list-style: none;
+  }
+
+  /* display: block tira o espaço que sobra embaixo de imagens e ícones.
+     O vertical-align só vale se alguma classe deixar o elemento na linha
+     do texto (o VS Code avisa que, com display: block, ele não tem efeito). */
+  img,
+  svg,
+  video,
+  audio,
+  iframe {
+    vertical-align: middle;
+    display: block;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 0px;
+  }
+
+  ::file-selector-button {
+    box-sizing: border-box;
+    border: 0px solid;
+    margin: 0px;
+    padding: 0px;
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 0px;
+    margin-inline-end: 4px;
+    appearance: button;
+  }
+
+  ::placeholder {
+    opacity: 1;
+  }
+
+  /* color-mix(cor, transparent) mistura a cor do texto com transparente,
+     deixando o placeholder mais claro que o texto digitado. O @supports
+     só aplica isso nos navegadores que entendem color-mix(). */
+  @supports (not ((-webkit-appearance: -apple-pay-button))) or
+    (contain-intrinsic-size: 1px) {
+    ::placeholder {
+      color: currentcolor;
+    }
+
+    @supports (color: color-mix(in lab, red, red)) {
+      ::placeholder {
+        color: color-mix(currentcolor, transparent);
+      }
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  /* Ajustes do campo de data (Chrome, Edge e Safari) */
+  ::-webkit-search-decoration {
+    appearance: none;
+  }
+
+  ::-webkit-date-and-time-value {
+    min-height: 1lh;
+    text-align: inherit;
+  }
+
+  ::-webkit-datetime-edit {
+    display: inline-flex;
+    padding-block: 0px;
+  }
+
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0px;
+  }
+
+  ::-webkit-datetime-edit-year-field {
+    padding-block: 0px;
+  }
+
+  ::-webkit-datetime-edit-month-field {
+    padding-block: 0px;
+  }
+
+  ::-webkit-datetime-edit-day-field {
+    padding-block: 0px;
+  }
+
+  ::-webkit-datetime-edit-hour-field {
+    padding-block: 0px;
+  }
+
+  ::-webkit-datetime-edit-minute-field {
+    padding-block: 0px;
+  }
+
+  ::-webkit-datetime-edit-second-field {
+    padding-block: 0px;
+  }
+
+  ::-webkit-datetime-edit-millisecond-field {
+    padding-block: 0px;
+  }
+
+  ::-webkit-datetime-edit-meridiem-field {
+    padding-block: 0px;
+  }
+
+  ::-webkit-calendar-picker-indicator {
+    line-height: 1;
+  }
+
+  button,
+  input:where([type="button"], [type="reset"], [type="submit"]) {
+    appearance: button;
+  }
+
+  ::-webkit-inner-spin-button {
+    height: auto;
+  }
+
+  ::-webkit-outer-spin-button {
+    height: auto;
+  }
+
+  /* O atributo hidden sempre esconde, mesmo com uma classe de display.
+     :where() não soma especificidade (peso) ao seletor. */
+  [hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+
+  /* ---------- Estilos do site ---------- */
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  /* --fs é o tamanho escolhido nos botões A-/A/A+ (tamanho.js).
+     Como quase tudo usa rem, o site inteiro cresce junto. */
+  html {
+    font-size: calc(100% * var(--fs, 1));
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: 0px;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-primary);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* Esta regra de alto contraste fica aqui, na camada base, de propósito:
+     uma classe de cor no título (como .text-aqua no "Você sabia?") deve
+     continuar vencendo. Fora da camada, ela pintaria tudo de branco. */
+  html.hc h1,
+  html.hc h2,
+  html.hc h3 {
+    color: oklch(1 0 0);
+  }
+
+  /* Foco do teclado: contorno verde-claro com uma borda escura em volta,
+     visível tanto em fundo claro quanto em fundo escuro */
+  :focus-visible {
+    outline: 3px solid var(--color-spring);
+    outline-offset: 0px;
+    box-shadow: oklch(0.22 0 0) 0px 0px 0px 5px;
+  }
+
+  th,
+  td {
+    border: 1px solid var(--color-border);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+  }
+
+  thead th,
+  tfoot th,
+  tfoot td {
+    background: var(--color-surface);
+    font-weight: 700;
+  }
+
+  caption {
+    text-align: left;
+    color: var(--color-primary);
+    padding-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  /* Teclas da tabela de atalhos (página Acessibilidade): parecem teclas */
+  kbd {
+    border-bottom: 3px solid var(--color-primary-edge);
+    border-radius: 6px;
+    padding: 0.1rem 0.5rem;
+    font-family: inherit;
+    font-weight: 700;
+  }
+}
+
+/* Camada vazia: só reserva a posição de "components" na ordem das camadas */
+@layer components;
+
+
+/* =========================================================
+   3. UTILITÁRIOS
+   Classes pequenas, cada uma faz uma coisa só (vindas do
+   Tailwind CSS). O nome diz o que fazem: .mt-4 = margem de
+   cima, .p-5 = espaço interno, .text-primary = cor do texto.
+   No HTML, o ":" e os colchetes fazem parte do nome da classe
+   (ex.: hover:underline, lg:grid-cols-[2fr_1fr]); aqui no CSS
+   eles aparecem com uma barra invertida antes, como em
+   .hover\:underline.
+   ========================================================= */
+
+@layer utilities {
+  /* Esconde visualmente, mas o leitor de tela continua lendo */
+  .sr-only {
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0px;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0px;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  /* ---------- Posição ---------- */
+
+  .absolute {
+    position: absolute;
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .sticky {
+    position: sticky;
+  }
+
+  .top-0 {
+    top: 0px;
+  }
+
+  .top-full {
+    top: 100%;
+  }
+
+  .right-0 {
+    right: 0px;
+  }
+
+  .left-0 {
+    left: 0px;
+  }
+
+  .z-40 {
+    z-index: 40;
+  }
+
+  /* ---------- Largura do conteúdo e margens ---------- */
+
+  /* Largura máxima do conteúdo, centralizado, com respiro nas laterais */
+  .container-site {
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 2.25rem;
+  }
+
+  .mx-auto {
+    margin-inline: auto;
+  }
+
+  .mt-1 {
+    margin-top: var(--spacing);
+  }
+
+  .mt-2 {
+    margin-top: calc(var(--spacing) * 2);
+  }
+
+  .mt-3 {
+    margin-top: calc(var(--spacing) * 3);
+  }
+
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
+  }
+
+  .mt-5 {
+    margin-top: calc(var(--spacing) * 5);
+  }
+
+  .mt-6 {
+    margin-top: calc(var(--spacing) * 6);
+  }
+
+  .mt-8 {
+    margin-top: calc(var(--spacing) * 8);
+  }
+
+  .mt-10 {
+    margin-top: calc(var(--spacing) * 10);
+  }
+
+  /* ---------- Display e tamanhos ---------- */
+
+  .block {
+    display: block;
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .grid {
+    display: grid;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .inline-flex {
+    display: inline-flex;
+  }
+
+  .aspect-video {
+    aspect-ratio: var(--aspect-video);
+  }
+
+  .h-5 {
+    height: calc(var(--spacing) * 5);
+  }
+
+  .h-9 {
+    height: calc(var(--spacing) * 9);
+  }
+
+  .h-96 {
+    height: calc(var(--spacing) * 96);
+  }
+
+  .h-\[340px\] {
+    height: 340px;
+  }
+
+  .h-auto {
+    height: auto;
+  }
+
+  /* 3rem = 48px: altura mínima confortável para tocar com o dedo */
+  .min-h-12 {
+    min-height: calc(var(--spacing) * 12);
+  }
+
+  .w-5 {
+    width: calc(var(--spacing) * 5);
+  }
+
+  .w-32 {
+    width: calc(var(--spacing) * 32);
+  }
+
+  .w-\[340px\] {
+    width: 340px;
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  .max-w-3xl {
+    max-width: var(--container-3xl);
+  }
+
+  .max-w-4xl {
+    max-width: var(--container-4xl);
+  }
+
+  .max-w-\[760px\] {
+    max-width: 760px;
+  }
+
+  /* Puxa o elemento metade da própria largura/altura para trás:
+     usado para centralizar os passos no círculo da página Projetos */
+  .-translate-x-1\/2 {
+    --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+
+  /* Efeito de "tecla apertada" ao clicar (combina com .key) */
+  .key-press:active {
+    border-bottom-width: 2px;
+    transform: translateY(2px);
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  /* ---------- Flexbox e grid ---------- */
+
+  .flex-col {
+    flex-direction: column;
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .items-center {
+    align-items: center;
+  }
+
+  .justify-between {
+    justify-content: space-between;
+  }
+
+  .justify-center {
+    justify-content: center;
+  }
+
+  .justify-end {
+    justify-content: flex-end;
+  }
+
+  .gap-1 {
+    gap: var(--spacing);
+  }
+
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+
+  .gap-3 {
+    gap: calc(var(--spacing) * 3);
+  }
+
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
+  }
+
+  .gap-6 {
+    gap: calc(var(--spacing) * 6);
+  }
+
+  .gap-8 {
+    gap: calc(var(--spacing) * 8);
+  }
+
+  .gap-10 {
+    gap: calc(var(--spacing) * 10);
+  }
+
+  /* .space-y-*: espaço vertical entre os filhos (menos depois do último).
+     :where() não soma especificidade, então uma margem colocada
+     direto no filho (como .mt-4) ainda pode vencer. */
+  :where(.space-y-2 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(
+      calc(var(--spacing) * 2) * var(--tw-space-y-reverse)
+    );
+    margin-block-end: calc(
+      calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+
+  :where(.space-y-3 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(
+      calc(var(--spacing) * 3) * var(--tw-space-y-reverse)
+    );
+    margin-block-end: calc(
+      calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+
+  :where(.space-y-4 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(
+      calc(var(--spacing) * 4) * var(--tw-space-y-reverse)
+    );
+    margin-block-end: calc(
+      calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+
+  :where(.space-y-6 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(
+      calc(var(--spacing) * 6) * var(--tw-space-y-reverse)
+    );
+    margin-block-end: calc(
+      calc(var(--spacing) * 6) * calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+
+  :where(.space-y-12 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(
+      calc(var(--spacing) * 12) * var(--tw-space-y-reverse)
+    );
+    margin-block-end: calc(
+      calc(var(--spacing) * 12) * calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+
+  :where(.space-y-14 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(
+      calc(var(--spacing) * 14) * var(--tw-space-y-reverse)
+    );
+    margin-block-end: calc(
+      calc(var(--spacing) * 14) * calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+
+  .overflow-hidden {
+    overflow: hidden;
+  }
+
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
+
+  /* ---------- Bordas ---------- */
+
+  /* .key: o "cartão-tecla" do site, com a borda de baixo mais grossa,
+     como uma tecla de teclado (a identidade visual da ReciclaTech) */
+  .key {
+    border-bottom: 4px solid var(--color-primary-edge);
+    border-radius: 8px;
+    transition:
+      transform 0.1s,
+      border-bottom-width 0.1s;
+  }
+
+  /* Raio bem grande = cantos totalmente redondos (vira círculo) */
+  .rounded-full {
+    border-radius: 9999px;
+  }
+
+  .rounded-lg {
+    border-radius: var(--radius);
+  }
+
+  .rounded-md {
+    border-radius: calc(var(--radius) - 2px);
+  }
+
+  .rounded-xl {
+    border-radius: calc(var(--radius) + 4px);
+  }
+
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
+
+  .border-4 {
+    border-style: var(--tw-border-style);
+    border-width: 4px;
+  }
+
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
+
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+
+  .border-b-\[3px\] {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 3px;
+  }
+
+  .border-dotted {
+    --tw-border-style: dotted;
+    border-style: dotted;
+  }
+
+  /* Cor do rodapé com 30% de opacidade. Primeiro a cor cheia, para
+     navegadores antigos; depois o color-mix(), que mistura 30% da
+     cor com transparente, nos navegadores que o entendem. */
+  .border-footer-foreground\/30 {
+    border-color: var(--footer-foreground);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-footer-foreground\/30 {
+      border-color: color-mix(
+        in oklab,
+        var(--footer-foreground) 30%,
+        transparent
+      );
+    }
+  }
+
+  .border-input {
+    border-color: var(--input);
+  }
+
+  .border-olive {
+    border-color: var(--olive);
+  }
+
+  .border-primary {
+    border-color: var(--primary);
+  }
+
+  .border-sea {
+    border-color: var(--sea);
+  }
+
+  .border-transparent {
+    border-color: rgba(0, 0, 0, 0);
+  }
+
+  /* ---------- Fundos ---------- */
+
+  .bg-background {
+    background-color: var(--background);
+  }
+
+  .bg-footer {
+    background-color: var(--footer);
+  }
+
+  .bg-primary {
+    background-color: var(--primary);
+  }
+
+  .bg-surface {
+    background-color: var(--surface);
+  }
+
+  /* .braille: fundo de pontinhos que lembra a escrita em braile.
+     Primeiro a versão para navegadores antigos (pontos na cor cheia);
+     depois, com color-mix(), pontos com só 17% da cor (bem suaves). */
+  .braille {
+    background-image: radial-gradient(var(--color-sea) 1.5px, transparent 2px);
+    background-size: 9px 9px;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .braille {
+      background-image: radial-gradient(
+        color-mix(in oklab, var(--color-sea) 17%, transparent) 1.5px,
+        transparent 2px
+      );
+    }
+  }
+
+  /* ---------- Cores dos ícones (SVG) ---------- */
+
+  .fill-lime {
+    fill: var(--lime);
+  }
+
+  .fill-none {
+    fill: none;
+  }
+
+  .stroke-lime {
+    stroke: var(--lime);
+  }
+
+  /* ---------- Espaço interno (padding) ---------- */
+
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
+  }
+
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
+  }
+
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
+  }
+
+  .p-5 {
+    padding: calc(var(--spacing) * 5);
+  }
+
+  .p-6 {
+    padding: calc(var(--spacing) * 6);
+  }
+
+  .p-8 {
+    padding: calc(var(--spacing) * 8);
+  }
+
+  .px-2 {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+
+  .px-5 {
+    padding-inline: calc(var(--spacing) * 5);
+  }
+
+  .px-8 {
+    padding-inline: calc(var(--spacing) * 8);
+  }
+
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
+  }
+
+  .py-5 {
+    padding-block: calc(var(--spacing) * 5);
+  }
+
+  .py-14 {
+    padding-block: calc(var(--spacing) * 14);
+  }
+
+  .py-16 {
+    padding-block: calc(var(--spacing) * 16);
+  }
+
+  .pb-6 {
+    padding-bottom: calc(var(--spacing) * 6);
+  }
+
+  .pb-14 {
+    padding-bottom: calc(var(--spacing) * 14);
+  }
+
+  /* ---------- Texto ---------- */
+
+  .text-center {
+    text-align: center;
+  }
+
+  /* Cada tamanho de texto já vem com a altura de linha certa para ele */
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+
+  .text-4xl {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
+
+  .text-5xl {
+    font-size: var(--text-5xl);
+    line-height: var(--tw-leading, var(--text-5xl--line-height));
+  }
+
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+
+  .text-lg {
+    font-size: var(--text-lg);
+    line-height: var(--tw-leading, var(--text-lg--line-height));
+  }
+
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+
+  .font-bold {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .font-normal {
+    font-weight: var(--font-weight-normal);
+  }
+
+  .whitespace-normal {
+    white-space: normal;
+  }
+
+  .whitespace-nowrap {
+    white-space: nowrap;
+  }
+
+  .text-aqua {
+    color: var(--aqua);
+  }
+
+  .text-footer-foreground {
+    color: var(--footer-foreground);
+  }
+
+  .text-foreground {
+    color: var(--foreground);
+  }
+
+  .text-muted-foreground {
+    color: var(--muted-foreground);
+  }
+
+  .text-olive {
+    color: var(--olive);
+  }
+
+  .text-primary {
+    color: var(--primary);
+  }
+
+  .text-primary-foreground {
+    color: var(--primary-foreground);
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  .not-italic {
+    font-style: normal;
+  }
+
+  .underline {
+    text-decoration-line: underline;
+  }
+
+  .underline-offset-4 {
+    text-underline-offset: 4px;
+  }
+
+  /* ---------- Sombras e transições ---------- */
+
+  /* A sombra final soma várias partes (--tw-*): anel de foco, sombra
+     interna e sombra externa. Assim uma classe não apaga a outra. */
+  .shadow {
+    --tw-shadow:
+      0 1px 3px 0 var(--tw-shadow-color, #0000001a),
+      0 1px 2px -1px var(--tw-shadow-color, #0000001a);
+    box-shadow:
+      var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+      var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+
+  .shadow-sm {
+    --tw-shadow:
+      0 1px 3px 0 var(--tw-shadow-color, #0000001a),
+      0 1px 2px -1px var(--tw-shadow-color, #0000001a);
+    box-shadow:
+      var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+      var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+
+  .transition-colors {
+    transition-property:
+      color, background-color, border-color, outline-color,
+      text-decoration-color, fill, stroke;
+    transition-timing-function: var(
+      --tw-ease,
+      var(--default-transition-timing-function)
+    );
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+
+  /* ---------- Estados: hover, foco, desabilitado ---------- */
+
+  /* @media (hover: hover): o efeito de passar o mouse só existe em
+     aparelhos com mouse; no celular ele ficaria "grudado" após o toque */
+  @media (hover: hover) {
+    .hover\:bg-accent:hover {
+      background-color: var(--accent);
+    }
+
+    .hover\:bg-primary-edge:hover {
+      background-color: var(--primary-edge);
+    }
+
+    .hover\:text-accent-foreground:hover {
+      color: var(--accent-foreground);
+    }
+
+    .hover\:text-lime:hover {
+      color: var(--lime);
+    }
+
+    .hover\:underline:hover {
+      text-decoration-line: underline;
+    }
+  }
+
+  /* Link "Pular para o conteúdo principal": aparece ao receber foco */
+  .focus\:not-sr-only:focus {
+    clip-path: none;
+    white-space: normal;
+    width: auto;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    position: static;
+    overflow: visible;
+  }
+
+  .focus\:absolute:focus {
+    position: absolute;
+  }
+
+  .focus\:top-2:focus {
+    top: calc(var(--spacing) * 2);
+  }
+
+  .focus\:left-2:focus {
+    left: calc(var(--spacing) * 2);
+  }
+
+  .focus\:z-50:focus {
+    z-index: 50;
+  }
+
+  .focus-visible\:ring-1:focus-visible {
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0
+      calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+    box-shadow:
+      var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+      var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+
+  .focus-visible\:ring-ring:focus-visible {
+    --tw-ring-color: var(--ring);
+  }
+
+  .focus-visible\:outline-none:focus-visible {
+    outline-style: none;
+  }
+
+  .disabled\:pointer-events-none:disabled {
+    pointer-events: none;
+  }
+
+  .disabled\:cursor-not-allowed:disabled {
+    cursor: not-allowed;
+  }
+
+  .disabled\:opacity-50:disabled {
+    opacity: 0.5;
+  }
+
+  /* Link da página atual no menu (data-status="active"):
+     sublinhado verde-oliva e negrito */
+  .data-\[status\=active\]\:border-olive[data-status="active"] {
+    border-color: var(--olive);
+  }
+
+  .data-\[status\=active\]\:font-bold[data-status="active"] {
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* ---------- Classes responsivas ----------
+     sm: a partir de 40rem (640px), md: 48rem (768px), lg: 64rem (1024px).
+     Ficam dentro da camada de utilitários para ter a mesma prioridade
+     das outras classes. */
+
+  @media (width >= 40rem) {
+    .sm\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0px, 1fr));
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:col-span-2 {
+      grid-column: span 2 / span 2;
+    }
+
+    .md\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0px, 1fr));
+    }
+
+    .md\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0px, 1fr));
+    }
+
+    .md\:text-5xl {
+      font-size: var(--text-5xl);
+      line-height: var(--tw-leading, var(--text-5xl--line-height));
+    }
+  }
+
+  @media (width >= 64rem) {
+    .lg\:static {
+      position: static;
+    }
+
+    .lg\:block {
+      display: block;
+    }
+
+    .lg\:hidden {
+      display: none;
+    }
+
+    .lg\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0px, 1fr));
+    }
+
+    .lg\:grid-cols-\[2fr_1fr\] {
+      grid-template-columns: 2fr 1fr;
+    }
+
+    .lg\:flex-row {
+      flex-direction: row;
+    }
+
+    .lg\:border-0 {
+      border-style: var(--tw-border-style);
+      border-width: 0px;
+    }
+
+    .lg\:p-0 {
+      padding: 0px;
+    }
+  }
+
+  /* [&_svg]: vale para os ícones SVG dentro do elemento com a classe */
+  .\[\&_svg\]\:pointer-events-none svg {
+    pointer-events: none;
+  }
+
+  .\[\&_svg\]\:size-4 svg {
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+  }
+
+  .\[\&_svg\]\:shrink-0 svg {
+    flex-shrink: 0;
+  }
+}
+
+
+/* =========================================================
+   4. COMPONENTES DO SITE
+   Barra de acessibilidade, menu e rodapé (iguais em todas
+   as páginas). Daqui em diante as regras estão fora das
+   camadas e por isso vencem as classes utilitárias.
+   ========================================================= */
+
+/* ---------- Logo do topo ---------- */
+
+/* Altura em rem: o logo acompanha os botões A-, A, A+. A largura segue
+   a proporção da imagem (width: auto). */
+.logo-site {
+  display: block;
+  width: auto;
+  max-width: none; /* sem isso, com a fonte grande o menu espremia o logo e deformava a imagem */
+  height: 3.5rem;
+}
+
+/* A versão para fundo escuro só aparece no alto contraste (seção 7) */
+.logo-contraste {
+  display: none;
+}
+
+/* ---------- Barra de acessibilidade (botão "Alto contraste") ---------- */
+
+.site-a11y {
+  padding-block: 4px;
+}
+
+.site-a11y button {
+  border: 1px solid var(--sea);
+  height: auto;
+  min-height: 30px;
+  color: var(--primary-foreground);
+  border-radius: 4px;
+  padding: 5px 9px;
+  font-size: 12px;
+}
+
+/* As classes hover:bg-accent e hover:text-accent-foreground do botão
+   deixavam o fundo claro com o texto branco. O hover passa a ser só o
+   sublinhado (classe hover:underline), que o botão já tem. */
+.site-a11y button:hover {
+  background-color: transparent;
+  color: var(--primary-foreground);
+}
+
+/* Foco bem visível nos botões "Alto contraste" e "Menu". As classes
+   focus-visible:outline-none e focus-visible:ring-1 desses botões
+   deixavam só um anel fino de 1px; esta regra vale por cima delas. */
+.site-a11y button:focus-visible,
+[aria-controls="menu"]:focus-visible {
+  outline: 3px solid var(--color-spring);
+  outline-offset: 0;
+  box-shadow: 0 0 0 5px oklch(0.22 0 0);
+}
+
+/* ---------- Menu principal ---------- */
+
+.site-nav {
+  font-size: 14px;
+}
+
+.site-nav a {
+  border-radius: 0px 0px 6px 6px;
+  min-height: 40px;
+}
+
+/* ---------- Rodapé ---------- */
+
+.site-footer {
+  margin-top: 0px;
+}
+
+/* Endereço, e-mail e telefone: ícone e texto lado a lado */
+.site-footer address p {
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.site-footer address svg {
+  width: 16px;
+  height: 16px;
+  color: var(--sea);
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   5. PÁGINA INICIAL (index.html)
+   Os ajustes para celular e tablet estão na seção 11.
+   ========================================================= */
+
+/* ---------- Destaque do topo (foto e chamada) ---------- */
+
+.home-hero {
+  padding-block: 72px;
+}
+
+/* Duas colunas do mesmo tamanho: texto à esquerda, foto à direita.
+   minmax(0px, 1fr) deixa a coluna encolher sem estourar a tela. */
+.home-hero-grid {
+  grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
+  align-items: center;
+  gap: 64px;
+  display: grid;
+}
+
+.home-hero h1 {
+  font-size: 52px;
+  line-height: 1.12;
+}
+
+.home-hero .hero-copy {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* object-fit: cover recorta a foto para preencher o espaço 4:3
+   sem distorcer */
+.hero-photo {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 20px;
+  width: 100%;
+}
+
+/* Selo "+ de 1.200 computadores doados" sobre a foto */
+.hero-badge {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  position: absolute;
+  bottom: 24px;
+  left: -15px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+}
+
+/* ---------- "Como um computador parado vira inclusão" (5 passos) ---------- */
+
+.home-process {
+  padding-block: 84px 72px;
+}
+
+.process-grid {
+  grid-template-columns: repeat(5, minmax(0px, 1fr));
+  gap: 20px;
+  margin-top: 64px;
+  display: grid;
+  position: relative;
+}
+
+/* Linha tracejada que liga os números dos passos */
+.process-grid::before {
+  content: "";
+  border-top: 2px dashed var(--sea);
+  position: absolute;
+  top: 29px;
+  left: 0px;
+  right: 0px;
+}
+
+.process-card {
+  padding: 24px 20px;
+  position: relative;
+}
+
+.step-number {
+  background: var(--primary);
+  width: 48px;
+  height: 48px;
+  color: var(--primary-foreground);
+  border-radius: 50%;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  display: grid;
+}
+
+.step-icon {
+  width: 25px;
+  height: 25px;
+  color: var(--sea);
+  margin-top: 16px;
+}
+
+.process-card h3 {
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+.process-card p {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* Links "Veja o processo completo →" e "Ver todos os resultados →" */
+.section-link {
+  text-underline-offset: 4px;
+  width: fit-content;
+  margin: 40px auto 0px;
+  font-weight: 700;
+  text-decoration: underline;
+  display: block;
+}
+
+/* ---------- "Nosso impacto até agora" (números) ---------- */
+
+.home-impact {
+  text-align: center;
+  padding-block: 82px;
+}
+
+.impact-grid {
+  grid-template-columns: repeat(4, minmax(0px, 1fr));
+  gap: 32px;
+  margin-top: 64px;
+  display: grid;
+}
+
+.impact-number {
+  font-size: 64px;
+  line-height: 1;
+}
+
+.impact-caption {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.home-impact .section-link {
+  margin-top: 56px;
+}
+
+/* ---------- "Faça parte dessa história" (dois cartões) ---------- */
+
+.home-participate {
+  padding-block: 76px 80px;
+}
+
+.participate-grid {
+  grid-template-columns: repeat(2, minmax(0px, 1fr));
+  gap: 32px;
+  max-width: 880px;
+  margin: 56px auto 0px;
+  display: grid;
+}
+
+.participate-card {
+  background: var(--background);
+  padding: 36px;
+}
+
+.participate-icon {
+  width: 38px;
+  height: 38px;
+  color: var(--sea);
+  margin-bottom: 28px;
+}
+
+.participate-card h3 {
+  font-size: 22px;
+}
+
+.participate-card p {
+  margin-block: 16px 28px;
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   6. AJUSTES DE LEITURA
+   Tamanho da fonte e leitura em voz alta. Ficam dentro do
+   menu: no celular, dentro do menu sanduíche; no computador,
+   como uma lista suspensa no fim do menu.
+   ========================================================= */
+
+.ajustes {
+  position: relative;
+}
+
+/* Título "Ajustes de leitura" (<summary> do <details>) com uma seta
+   própria no lugar do triângulo padrão do navegador */
+.ajustes-resumo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 40px;
+  padding-inline: 0.5rem;
+  border-bottom: 3px solid transparent;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.ajustes-resumo::-webkit-details-marker {
+  display: none;
+}
+
+.ajustes-resumo::after {
+  content: "▾";
+  font-size: 0.8em;
+}
+
+.ajustes[open] .ajustes-resumo {
+  border-bottom-color: var(--olive);
+}
+
+.ajustes[open] .ajustes-resumo::after {
+  content: "▴";
+}
+
+.ajustes-painel {
+  padding: 0.75rem 0.5rem 1rem;
+}
+
+.ajustes-titulo {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.ajustes-titulo:not(:first-child) {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Computador: o painel abre como uma lista suspensa */
+@media (width >= 64rem) {
+  .ajustes-painel {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 50;
+    width: 20rem;
+    margin-top: 0.25rem;
+    padding: 1rem;
+    background: var(--background);
+    color: var(--foreground);
+    border: 2px solid var(--primary);
+    border-radius: 0.75rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* ---------- Botões A-, A, A+ ----------
+   O texto dos botões vem do CSS (::before); o leitor de tela usa o
+   aria-label de cada botão ("Diminuir a fonte" etc.). */
+
+.controle-fonte {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.controle-fonte button {
+  flex: 1;
+  min-height: 2.75rem;
+  font-weight: 700;
+  color: var(--primary-foreground);
+  background: var(--primary);
+  border: 2px solid var(--primary-edge);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.controle-fonte button::before {
+  content: "A";
+}
+
+.controle-fonte button[data-acao="diminuir"]::before {
+  content: "A-";
+}
+
+.controle-fonte button[data-acao="aumentar"]::before {
+  content: "A+";
+}
+
+.controle-fonte button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- Leitura em voz alta ---------- */
+
+/* Navegador sem leitura em voz alta: leitura-voz.js põe a classe
+   .sem-suporte e só a mensagem de aviso fica visível */
+.painel-leitura.sem-suporte .leitura-botoes,
+.painel-leitura.sem-suporte .leitura-velocidade {
+  display: none;
+}
+
+.leitura-status {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.leitura-status:empty {
+  display: none;
+}
+
+.leitura-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.65rem;
+}
+
+.painel-leitura button {
+  flex: 1 1 auto;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary-foreground);
+  background: var(--primary);
+  border: 2px solid var(--primary-edge);
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.painel-leitura button:hover:not(:disabled) {
+  background: var(--primary-edge);
+}
+
+.painel-leitura button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.leitura-velocidade label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.leitura-velocidade input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary);
+}
+
+/* Trecho que está sendo lido no momento (classe posta pelo leitura-voz.js):
+   fundo amarelo-claro com texto escuro, nos dois modos de cor */
+main .leitura-atual {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 0.25rem;
+  background: #fff3b0;
+  color: #1a1a1a;
+  box-shadow: 0 0 0 6px #fff3b0;
+}
+
+/* Os links ganham uma regra própria, com seletor mais forte que o
+   "html.hc a" da seção 7; os demais filhos herdam a cor escura,
+   inclusive textos coloridos e os do alto contraste */
+main .leitura-atual a {
+  color: #1a1a1a;
+}
+
+main .leitura-atual * {
+  color: inherit;
+}
+
+
+/* =========================================================
+   7. ALTO CONTRASTE
+   O botão "Alto contraste" (script.js) põe a classe .hc no
+   <html>. Aqui as variáveis da paleta são trocadas: fundo
+   preto, texto branco e destaques em amarelo. Os ajustes de
+   alto contraste dos formulários, da doação e da galeria
+   ficam no fim de cada uma dessas seções.
+   ========================================================= */
+
+html.hc {
+  --background: oklch(0% 0 0);
+  --foreground: oklch(100% 0 0);
+  --primary: oklch(0% 0 0);
+  --primary-foreground: oklch(100% 0 0);
+  --primary-edge: oklch(100% 0 0);
+  --olive: oklch(92% 0.19 100);
+  --sea: oklch(100% 0 0);
+  --aqua: oklch(92% 0.19 100);
+  --surface: oklch(0% 0 0);
+  --footer: oklch(0% 0 0);
+  --footer-foreground: oklch(100% 0 0);
+  --muted-foreground: oklch(100% 0 0);
+  --border: oklch(100% 0 0);
+  --input: oklch(100% 0 0);
+  /* Fundo de "hover" (accent) preto: era claro, com texto branco por cima */
+  --accent: oklch(0% 0 0);
+  --accent-foreground: oklch(92% 0.19 100);
+}
+
+/* Links em amarelo */
+html.hc a {
+  color: oklch(0.92 0.19 100);
+}
+
+/* Título do painel "Ajustes de leitura" no mesmo amarelo dos links */
+html.hc .ajustes-resumo {
+  color: oklch(0.92 0.19 100);
+}
+
+/* No modo .hc a cor "primary" vira preto, igual ao fundo. O texto e as
+   bordas que usam essa cor ficavam invisíveis; aqui viram brancos.
+   O :where() deixa estas regras fracas, para o destaque da leitura em voz
+   alta (.leitura-atual) continuar valendo por cima delas. */
+:where(html.hc) .text-primary {
+  color: oklch(1 0 0);
+}
+
+:where(html.hc) .border-primary {
+  border-color: oklch(1 0 0);
+}
+
+/* Legenda das tabelas */
+:where(html.hc) caption {
+  color: oklch(1 0 0);
+}
+
+/* Logo: troca a versão normal pela versão para fundo escuro */
+html.hc .logo-normal {
+  display: none;
+}
+
+html.hc .logo-contraste {
+  display: block;
+}
+
+
+/* =========================================================
+   8. FORMULÁRIOS: CAMPO COM ERRO (contato e doação)
+   O JavaScript põe aria-invalid="true" no campo errado. O texto
+   do erro diz o que corrigir; a borda só reforça (a cor sozinha
+   não basta para quem não enxerga cores).
+   ========================================================= */
+
+form input:not([type="radio"]):not([type="checkbox"])[aria-invalid="true"],
+form select[aria-invalid="true"],
+form textarea[aria-invalid="true"] {
+  border-color: var(--destructive);
+  border-width: 3px;
+}
+
+/* :has() escolhe o <label> que TEM dentro um radio ou checkbox com erro:
+   o contorno fica em volta da opção inteira, não só da bolinha */
+form label:not(.doacao-opcao):has(> input:is([type="radio"], [type="checkbox"])[aria-invalid="true"]) {
+  outline: 2px dashed var(--destructive);
+  outline-offset: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* ---------- No alto contraste: erros em amarelo e tracejados ---------- */
+
+html.hc form input:not([type="radio"]):not([type="checkbox"])[aria-invalid="true"],
+html.hc form select[aria-invalid="true"],
+html.hc form textarea[aria-invalid="true"] {
+  border-color: oklch(0.92 0.19 100);
+  border-style: dashed;
+}
+
+html.hc form label:has(> input:is([type="radio"], [type="checkbox"])[aria-invalid="true"]) {
+  outline-color: oklch(0.92 0.19 100);
+}
+
+
+/* =========================================================
+   9. DOAÇÃO EM DINHEIRO (contato.html + doacao.js)
+   Unidades em rem/em para acompanhar o A-/A/A+.
+   ========================================================= */
+
+/* Ao pular para #doacao-dinheiro, o título não fica escondido
+   atrás do cabeçalho fixo */
+#doacao-dinheiro {
+  scroll-margin-top: 5rem;
+}
+
+.doacao-aviso {
+  background: var(--surface);
+}
+
+/* ---------- Opções de valor, frequência e pagamento ----------
+   Radio visível dentro de um "cartão" grande, fácil de tocar */
+
+.doacao-opcao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--input);
+  border-radius: var(--radius);
+  background: var(--background);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.doacao-opcao input {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  accent-color: var(--primary);
+}
+
+@media (hover: hover) {
+  .doacao-opcao:hover {
+    background: var(--surface);
+  }
+}
+
+/* :has() destaca o cartão inteiro quando o radio de dentro está
+   marcado, tem foco do teclado ou tem erro */
+.doacao-opcao:has(input:checked) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 2px var(--primary);
+  background: var(--surface);
+}
+
+.doacao-opcao:has(input:focus-visible) {
+  outline: 3px solid var(--color-spring);
+  outline-offset: 2px;
+}
+
+.doacao-opcao:has(input[aria-invalid="true"]) {
+  border-color: var(--destructive);
+  border-style: dashed;
+}
+
+/* ---------- Instruções de pagamento e chave PIX ---------- */
+
+.doacao-instrucao {
+  padding: 1rem;
+  border: 2px solid var(--input);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* overflow-wrap: anywhere deixa a chave quebrar de linha no celular */
+.doacao-chave {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border: 1px dashed var(--input);
+  border-radius: 0.25rem;
+  background: var(--background);
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Mensagens ---------- */
+
+/* Texto de erro embaixo do campo (começa com "Erro:", não depende só
+   da cor). Vazio = escondido. */
+.doacao-erro {
+  margin-top: 0.25rem;
+  color: var(--destructive);
+  font-weight: 700;
+}
+
+.doacao-erro:empty {
+  display: none;
+}
+
+/* Mensagens de envio. Elas ficam sempre no HTML (vazias) para o leitor
+   de tela anunciar quando o texto aparece; vazias, não ocupam espaço. */
+.doacao-msg {
+  padding: 0.75rem 1rem;
+  border-left: 0.375rem solid var(--primary);
+  border-radius: 0.25rem;
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.doacao-msg:empty {
+  padding: 0;
+  border: 0;
+}
+
+.doacao-msg-erro {
+  border-left-color: var(--destructive);
+  color: var(--destructive);
+}
+
+/* Botões durante o envio (doacao.js os desabilita) */
+#doacao-enviar:disabled,
+#doacao-limpar:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+/* ---------- No alto contraste: amarelo para erros e para a opção marcada ---------- */
+
+html.hc .doacao-erro {
+  color: oklch(0.92 0.19 100);
+}
+
+html.hc .doacao-opcao:has(input[aria-invalid="true"]) {
+  border-color: oklch(0.92 0.19 100);
+}
+
+html.hc .doacao-opcao input {
+  accent-color: var(--olive);
+}
+
+html.hc .doacao-opcao:has(input:checked) {
+  border-color: var(--olive);
+  box-shadow: inset 0 0 0 2px var(--olive);
+}
+
+html.hc .doacao-msg {
+  border-left-color: oklch(1 0 0);
+}
+
+/* Vem depois de "html.hc .doacao-msg" para a barra amarela vencer
+   a branca na mensagem de erro (os dois seletores têm o mesmo peso) */
+html.hc .doacao-msg-erro {
+  color: oklch(0.92 0.19 100);
+  border-left-color: oklch(0.92 0.19 100);
+}
+
+
+/* =========================================================
+   10. GALERIA: JANELA DA IMAGEM AMPLIADA (galeria.js)
+   ========================================================= */
+
+/* O <dialog> em si fica transparente e sem borda; o visual vem do
+   bloco de dentro (.galeria-dialogo-conteudo). Assim, um clique no
+   <dialog> fora desse bloco é um clique no fundo, e a janela fecha. */
+.galeria-dialogo {
+  width: min(56rem, calc(100% - 2rem));
+  max-width: none;
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  overflow: auto;
+}
+
+/* ::backdrop é o fundo escurecido atrás da janela */
+.galeria-dialogo::backdrop {
+  background: rgb(0 0 0 / 0.75);
+}
+
+.galeria-dialogo-conteudo {
+  background: var(--background);
+}
+
+/* Fotos da grade: todas no mesmo formato (16:9, pela classe .aspect-video).
+   object-fit: cover preenche o quadro sem deformar a foto, cortando só
+   as sobras das bordas */
+.galeria-foto {
+  object-fit: cover;
+}
+
+/* Foto ampliada: aparece inteira, sem cortes, e cabe na tela junto com a
+   legenda e o botão Fechar (60dvh = 60% da altura visível da tela).
+   Com largura e altura "auto", o navegador mantém a proporção da foto
+   ao aplicar os limites max-width e max-height. */
+.galeria-dialogo-imagem > img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 60dvh;
+  margin-inline: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   11. TELAS MENORES
+   ========================================================= */
+
+/* ---------- Até 1023px (tablet) ---------- */
+
+@media (width <= 1023px) {
+  .home-hero-grid {
+    gap: 32px;
+  }
+
+  .home-hero h1 {
+    font-size: 40px;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(3, minmax(0px, 1fr));
+  }
+
+  /* Com os passos em mais de uma linha, a linha tracejada some */
+  .process-grid::before {
+    display: none;
+  }
+
+  .impact-grid {
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+    gap: 44px;
+  }
+}
+
+/* ---------- Até 767px (celular) ---------- */
+
+@media (width <= 767px) {
+  .container-site {
+    padding-inline: 20px;
+  }
+
+  .logo-site {
+    height: 3rem;
+  }
+
+  .home-hero {
+    padding-block: 40px;
+  }
+
+  /* Uma coluna só: a foto vai para baixo do texto */
+  .home-hero-grid {
+    grid-template-columns: minmax(0px, 1fr);
+    gap: 36px;
+  }
+
+  .home-hero h1 {
+    font-size: 36px;
+  }
+
+  .home-hero .hero-copy {
+    font-size: 16px;
+  }
+
+  .hero-badge {
+    font-size: 12px;
+    bottom: 15px;
+    left: 10px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .home-process,
+  .home-impact,
+  .home-participate {
+    padding-block: 48px;
+  }
+
+  .process-grid {
+    grid-template-columns: minmax(0px, 1fr);
+    margin-top: 32px;
+  }
+
+  .process-card {
+    padding: 24px;
+  }
+
+  .impact-grid {
+    gap: 36px 20px;
+    margin-top: 40px;
+  }
+
+  .impact-number {
+    font-size: 42px;
+  }
+
+  .impact-caption {
+    font-size: 14px;
+  }
+
+  .participate-grid {
+    grid-template-columns: minmax(0px, 1fr);
+    margin-top: 32px;
+  }
+
+  .participate-card {
+    padding: 28px;
+  }
+}
+
+/* ---------- Abaixo de 64rem (onde aparece o menu sanduíche) ---------- */
+
+/* Se o menu aberto for mais alto que a tela, ele rola por dentro */
+@media (width < 64rem) {
+  #menu {
+    max-height: calc(100dvh - 8rem);
+    overflow-y: auto;
+  }
+}
