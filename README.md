@@ -2,7 +2,7 @@
 
 Projeto da disciplina de **Front-End** da **UNICID** (Universidade Cidade de São Paulo), desenvolvido em grupo em 2026.
 
-**Site publicado:** [https://www.reciclatechoficial.com.br](https://www.reciclatechoficial.com.br)
+**Site publicado:** [https://www.reciclatechoficial.com.br](https://reciclatechoficial.com.br)
 
 > ⚠️ A ReciclaTech é uma organização **fictícia**, criada para este trabalho acadêmico. Números de impacto, depoimentos, endereço, telefone, chave PIX e instruções de pagamento do site são **ilustrativos**. Nenhuma doação, cobrança ou coleta real é feita pelo site.
 
@@ -151,7 +151,7 @@ Todos os arquivos `.js` ficam dentro de uma função que se executa sozinha, com
 
 ## Como executar
 
-**Online:** acesse [https://www.reciclatechoficial.com.br](https://www.reciclatechoficial.com.br).
+**Online:** acesse [https://www.reciclatechoficial.com.br](https://reciclatechoficial.com.br).
 
 **No computador:** como o site é estático, não precisa instalar nada.
 
